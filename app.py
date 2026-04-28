@@ -4,6 +4,7 @@ import numpy as np
 import plotly.express as px
 from pymongo import MongoClient
 from sklearn.ensemble import RandomForestClassifier
+import certifi
 
 st.set_page_config(page_title="Workforce Turnover Analysis Dashboard", layout="wide")
 st.title("Workforce Turnover Analysis Dashboard")
