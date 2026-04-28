@@ -27,14 +27,19 @@ WEIGHTS  = np.array(list(FEATURE_WEIGHTS.values()))   # shape (7,)
 # ── MongoDB ─────────────────────────────────────────────────────────────────
 @st.cache_data
 def get_data():
-    # Use the Environment Variable we will set in Render
+    # Use the Environment Variable set in Render
     uri = os.getenv("MONGO_URI") 
     
-    # If the environment variable isn't set yet, use your string as a fallback
+    # Fallback string if Environment Variable isn't detected yet
     if not uri:
         uri = "mongodb+srv://cluster0:P%40ssw0rd@cluster0.nffdoqb.mongodb.net/"
         
-    client = MongoClient(uri, tlsCAFile=certifi.where())
+    client = MongoClient(
+        uri, 
+        tlsCAFile=certifi.where(),
+        tlsAllowInvalidCertificates=True,  # This fixes the SSL Handshake error
+        serverSelectionTimeoutMS=10000     # Stops the infinite loading after 10 seconds
+    )
     db = client["hr_database"]
     return pd.DataFrame(list(db["employee_data"].find()))
 
