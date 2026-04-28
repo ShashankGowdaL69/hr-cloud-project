@@ -25,7 +25,7 @@ WEIGHTS  = np.array(list(FEATURE_WEIGHTS.values()))   # shape (7,)
 # ── MongoDB ─────────────────────────────────────────────────────────────────
 @st.cache_data
 def get_data():
-    client = MongoClient("mongodb+srv://cluster0:P@ssw0rd@cluster0.nffdoqb.mongodb.net/")
+    client = MongoClient("mongodb+srv://cluster0:P%40ssw0rd@cluster0.nffdoqb.mongodb.net/")
     db = client["hr_database"]
     return pd.DataFrame(list(db["employee_data"].find()))
 
