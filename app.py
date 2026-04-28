@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -26,7 +27,14 @@ WEIGHTS  = np.array(list(FEATURE_WEIGHTS.values()))   # shape (7,)
 # ── MongoDB ─────────────────────────────────────────────────────────────────
 @st.cache_data
 def get_data():
-    client = MongoClient("mongodb+srv://cluster0:P%40ssw0rd@cluster0.nffdoqb.mongodb.net/", tlsCAFile=certifi.where())
+    # Use the Environment Variable we will set in Render
+    uri = os.getenv("MONGO_URI") 
+    
+    # If the environment variable isn't set yet, use your string as a fallback
+    if not uri:
+        uri = "mongodb+srv://cluster0:P%40ssw0rd@cluster0.nffdoqb.mongodb.net/"
+        
+    client = MongoClient(uri, tlsCAFile=certifi.where())
     db = client["hr_database"]
     return pd.DataFrame(list(db["employee_data"].find()))
 
