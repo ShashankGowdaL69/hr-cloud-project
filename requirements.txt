@@ -4,3 +4,4 @@ pymongo
 plotly
 scikit-learn
 numpy
+certifi
