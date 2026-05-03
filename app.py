@@ -7,8 +7,8 @@ from pymongo import MongoClient
 from sklearn.ensemble import RandomForestClassifier
 import certifi
 
-st.set_page_config(page_title="Workforce Turnover Analysis Dashboard", layout="wide")
-st.title("Workforce Turnover Analysis Dashboard")
+st.set_page_config(page_title="Employee Attrition Analysis Dashboard", layout="wide")
+st.title("Employee Attrition Analysis Dashboard")
 
 # ── Influence weights (your defined table) ──────────────────────────────────
 FEATURE_WEIGHTS = {
@@ -89,7 +89,7 @@ if df.empty:
 
 model = train_model(df)
 
-tab1, tab2 = st.tabs(["📊 Data Dashboard", "🔮 Predict Turnover Risk"])
+tab1, tab2 = st.tabs(["Attrition Dashboard", "Predict Attrition Risk"])
 
 # ════════════════════════════════════════════════════════════════════════════
 # TAB 1 — DASHBOARD
@@ -164,7 +164,7 @@ with tab2:
 
         overtime = col_c.selectbox("Works Overtime?", ["No", "Yes"])
 
-        submitted = st.form_submit_button("Predict Turnover Risk")
+        submitted = st.form_submit_button("Predict Attrition Risk")
 
     if submitted:
         raw_input = pd.DataFrame([{
