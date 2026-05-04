@@ -7,8 +7,8 @@ from pymongo import MongoClient
 from sklearn.ensemble import RandomForestClassifier
 import certifi
 
-st.set_page_config(page_title="Workforce Turnover Analysis Dashboard", layout="wide")
-st.title("Workforce Turnover Analysis Dashboard")
+st.set_page_config(page_title="Employee Attrition Analysis Dashboard", layout="wide")
+st.title("Employee Attrition Analysis Dashboard")
 
 # ── Influence weights (your defined table) ──────────────────────────────────
 FEATURE_WEIGHTS = {
