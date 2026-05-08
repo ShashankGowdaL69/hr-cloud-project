@@ -164,7 +164,7 @@ with tab2:
 
         overtime = col_c.selectbox("Works Overtime?", ["No", "Yes"])
 
-        submitted = st.form_submit_button("Predict Attrition Risk")
+        submitted = st.form_submit_button("Predict Turnover Risk")
 
     if submitted:
         raw_input = pd.DataFrame([{
